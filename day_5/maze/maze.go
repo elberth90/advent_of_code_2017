@@ -9,9 +9,9 @@ func FindExit(l *List) int {
 			return steps
 		}
 		jump = current.Value
-		current.Value += 1
+		current.Value++
 		current = current.JumpBy(jump)
-		steps += 1
+		steps++
 	}
 }
 
@@ -25,11 +25,11 @@ func FindStrangeExit(l *List) int {
 		}
 		jump = current.Value
 		if jump >= 3 {
-			current.Value -= 1
+			current.Value--
 		} else {
-			current.Value += 1
+			current.Value++
 		}
 		current = current.JumpBy(jump)
-		steps += 1
+		steps++
 	}
 }

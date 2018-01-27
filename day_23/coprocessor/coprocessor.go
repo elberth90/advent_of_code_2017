@@ -10,7 +10,7 @@ func HowManyMul(input string) int {
 	instructions := strings.Split(strings.Trim(input, "\n"), "\n")
 
 	registries := setupRegisters()
-	var mulCounter int = 0
+	var mulCounter = 0
 
 	for i := 0; i < len(instructions); i++ {
 		parsedInstruction := strings.Split(instructions[i], " ")
@@ -84,7 +84,7 @@ func getValueOrRegistry(intMaybe string, fallback int) int {
 }
 
 func setupRegisters() map[string]int {
-	var registers map[string]int = map[string]int{}
+	var registers = map[string]int{}
 	for i := 97; i < 105; i++ {
 		registers[string(i)] = 0
 	}

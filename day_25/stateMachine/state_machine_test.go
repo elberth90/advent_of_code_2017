@@ -1,4 +1,4 @@
-package state_machine
+package stateMachine
 
 import (
 	"testing"

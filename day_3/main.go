@@ -6,12 +6,12 @@ import (
 	"github.com/elberth90/advent_of_code_2017/day_3/grid"
 )
 
-const input_1 = 265149
+const input = 265149
 
 func main() {
-	sum := grid.CalculateSteps(input_1)
+	sum := grid.CalculateSteps(input)
 	fmt.Printf("Result: `%d`\n", sum)
 
-	number := grid.CalculateNext(input_1)
+	number := grid.CalculateNext(input)
 	fmt.Printf("Result: `%d`\n", number)
 }

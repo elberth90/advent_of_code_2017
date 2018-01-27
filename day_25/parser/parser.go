@@ -11,26 +11,31 @@ const (
 	stepsRegex = `Perform a diagnostic checksum after (?P<Steps>\d+)`
 )
 
+// Blueprint contain information about blueprint
 type Blueprint struct {
 	StartWithState string
 	Steps          int
 	StateList      StateList
 }
 
+// State contain information about state
 type State struct {
 	ID  string
 	On0 Instruction
 	On1 Instruction
 }
 
+// Instruction contain instructions for state
 type Instruction struct {
 	ToWrite     int
 	Move        int
 	NextStateID string
 }
 
+// StateList holds map of the State
 type StateList = map[string]State
 
+// ParseBlueprint return Blueprint struct
 func ParseBlueprint(input string) Blueprint {
 	var err error
 	b := Blueprint{

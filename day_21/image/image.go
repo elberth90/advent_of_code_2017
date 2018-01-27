@@ -36,16 +36,16 @@ func MakeArt(rules string, iterations int) int {
 					block = append(block, image[j+m][l:l+step])
 				}
 				block = transform(block, r)
-				dst_y := (j / step) * (step + 1)
+				dstY := (j / step) * (step + 1)
 				for m := 0; m < step+1; m++ {
-					newImage[dst_y+m] += block[m]
+					newImage[dstY+m] += block[m]
 				}
 			}
 		}
 		image = newImage
 	}
 
-	var counter int = 0
+	var counter = 0
 	for _, r := range image {
 		counter += strings.Count(r, "#")
 	}
@@ -101,7 +101,7 @@ func flip(block []string) []string {
 		return result
 	}
 
-	var newBlock []string = make([]string, len(block))
+	var newBlock = make([]string, len(block))
 	for i, b := range block {
 		newBlock[i] = reverse(b)
 	}

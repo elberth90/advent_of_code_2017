@@ -8,18 +8,18 @@ import (
 	"github.com/pkg/errors"
 )
 
-const MaxUint = ^uint(0)
-const MaxInt = int(MaxUint >> 1)
-const MinInt = -MaxInt - 1
+const maxUint = ^uint(0)
+const maxInt = int(maxUint >> 1)
+const minInt = -maxInt - 1
 
 var errParse = errors.New("parse error")
 
 // CalculateChecksum return checksum based on difference between highest and lowest value in row
 func CalculateChecksum(input string) (int, error) {
-	var sum int = 0
+	var sum int
 	scanner := bufio.NewScanner(strings.NewReader(input))
 	for scanner.Scan() {
-		highest, lowest := MinInt, MaxInt
+		highest, lowest := minInt, maxInt
 		numbers := strings.Fields(scanner.Text())
 		for _, number := range numbers {
 			n, err := parseInt(number)
@@ -42,10 +42,10 @@ func CalculateChecksum(input string) (int, error) {
 
 // CalculateChecksumWithModulo return checksum based on modulo operation between two numbers in row
 func CalculateChecksumWithModulo(input string) (int, error) {
-	var sum int = 0
+	var sum int
 	scanner := bufio.NewScanner(strings.NewReader(input))
 	for scanner.Scan() {
-		highest, lowest := MinInt, MaxInt
+		highest, lowest := minInt, maxInt
 		numbers, err := convert(strings.Fields(scanner.Text()))
 		if err != nil {
 			return 0, err

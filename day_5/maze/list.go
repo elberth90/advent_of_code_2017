@@ -9,20 +9,12 @@ type Element struct {
 
 // Next returns next Element
 func (e *Element) Next() *Element {
-	if n := e.next; n != nil {
-		return n
-	}
-
-	return nil
+	return e.next
 }
 
 // Prev returns previous Element
 func (e *Element) Prev() *Element {
-	if n := e.prev; n != nil {
-		return n
-	}
-
-	return nil
+	return e.prev
 }
 
 // JumpBy jumps to next or previous element depending on given value
@@ -35,7 +27,7 @@ func (e *Element) JumpBy(jumps int) *Element {
 		if e.prev == nil {
 			return nil
 		}
-		jumps += 1
+		jumps++
 		return e.prev.JumpBy(jumps)
 	}
 
@@ -43,7 +35,7 @@ func (e *Element) JumpBy(jumps int) *Element {
 		return nil
 	}
 
-	jumps -= 1
+	jumps--
 	return e.next.JumpBy(jumps)
 }
 
@@ -94,6 +86,6 @@ func (l *List) Push(value int) *List {
 		l.tail.next = &e
 		l.tail = &e
 	}
-	l.len += 1
+	l.len++
 	return l
 }
