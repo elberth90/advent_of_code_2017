@@ -18,7 +18,7 @@ func calculateCoord(n int) [2]int {
 	t := 2*k + 1
 	m := int(math.Pow(float64(t), 2))
 
-	t -= 1
+	t--
 
 	if n >= m-t {
 		pos[0] = k - (m - n)
@@ -50,10 +50,10 @@ func calculateCoord(n int) [2]int {
 }
 
 const (
-	RIGHT = iota
-	UP
-	LEFT
-	DOWN
+	right = iota
+	up
+	left
+	down
 )
 
 // CalculateNext return first value that is larger than given input. Values are calculated using sum of the values in all adjacent squares, including diagonals.
@@ -65,36 +65,36 @@ func CalculateNext(n int) int {
 
 	c := 1
 	b := 2
-	dir := RIGHT
+	dir := right
 	x, y := 0, 0
 	for i := 1; ; i++ {
 		if c == b {
 			switch dir {
-			case RIGHT:
-				dir = UP
-			case UP:
-				b += 1
-				dir = LEFT
-			case LEFT:
-				dir = DOWN
-			case DOWN:
-				b += 1
-				dir = RIGHT
+			case right:
+				dir = up
+			case up:
+				b++
+				dir = left
+			case left:
+				dir = down
+			case down:
+				b++
+				dir = right
 			}
 			c = 1
 		}
 
 		switch dir {
-		case RIGHT:
-			x += 1
-		case UP:
-			y += 1
-		case LEFT:
-			x -= 1
-		case DOWN:
-			y -= 1
+		case right:
+			x++
+		case up:
+			y++
+		case left:
+			x--
+		case down:
+			y--
 		}
-		c += 1
+		c++
 
 		if g[x] == nil {
 			g[x] = make(map[int]int)
@@ -125,32 +125,32 @@ func CalculateNext(n int) int {
 //func spiralGrid(n int) {
 //	c := 1
 //	b := 2
-//	dir := RIGHT
+//	dir := right
 //	x, y := 0, 0
 //	for i := 1; i <= n; i++ {
 //		if c == b {
 //			switch dir {
-//			case RIGHT:
-//				dir = UP
-//			case UP:
+//			case right:
+//				dir = up
+//			case up:
 //				b += 1
-//				dir = LEFT
-//			case LEFT:
-//				dir = DOWN
-//			case DOWN:
+//				dir = left
+//			case left:
+//				dir = down
+//			case down:
 //				b += 1
-//				dir = RIGHT
+//				dir = right
 //			}
 //			c = 1
 //		}
 //		switch dir {
-//		case RIGHT:
+//		case right:
 //			x += 1
-//		case UP:
+//		case up:
 //			y += 1
-//		case LEFT:
+//		case left:
 //			x -= 1
-//		case DOWN:
+//		case down:
 //			y -= 1
 //		}
 //		c += 1

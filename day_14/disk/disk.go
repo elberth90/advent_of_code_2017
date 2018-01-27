@@ -24,7 +24,7 @@ func Occupancy(input string) int {
 // RegionsFinder return number of regions in disk grid
 func RegionsFinder(input string) int {
 	var disk [gridLength]string
-	var visited []bool = make([]bool, gridLength*gridLength)
+	var visited = make([]bool, gridLength*gridLength)
 	var maxGroup int
 
 	for i := 0; i < gridLength; i++ {

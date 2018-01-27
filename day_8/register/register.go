@@ -5,12 +5,21 @@ import (
 	"strings"
 )
 
+const maxUint = ^uint(0)
+const maxInt = int(maxUint >> 1)
+const minInt = -maxInt - 1
+
+const (
+	increase = iota
+	decrease
+)
+
 // Run is a method that parse instruction and execute them
 func Run(input string) (int, int) {
 	data := strings.Split(input, "\n")
 	m := map[string]int{}
-	max := MinInt
-	highestMax := MinInt
+	max := minInt
+	highestMax := minInt
 
 	for _, l := range data {
 		s := split(l)
@@ -61,23 +70,14 @@ func ifFunc(valueFirst int, statement string, valueSecond int) bool {
 
 func changedValue(element int, change int, changeValue int) int {
 	switch change {
-	case INCREASE:
+	case increase:
 		return element + changeValue
-	case DECREASE:
+	case decrease:
 		return element - changeValue
 	default:
 		panic("unsupported operator")
 	}
 }
-
-const MaxUint = ^uint(0)
-const MaxInt = int(MaxUint >> 1)
-const MinInt = -MaxInt - 1
-
-const (
-	INCREASE = iota
-	DECREASE
-)
 
 type element struct {
 	ElementToChange string
@@ -96,9 +96,9 @@ func split(line string) *element {
 
 	switch data[1] {
 	case "inc":
-		change = INCREASE
+		change = increase
 	case "dec":
-		change = DECREASE
+		change = decrease
 	}
 
 	changeValue, err := strconv.Atoi(data[2])

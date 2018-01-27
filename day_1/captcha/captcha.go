@@ -20,11 +20,11 @@ func CalculateSumWithJump(input string) (int, error) {
 }
 
 func calculate(input string, jump int) (int, error) {
-	var sum int = 0
-	var next int = 0
+	var sum int
+	var next int
 	inputSize := len(input)
 
-	for i := 0; i < inputSize; i += 1 {
+	for i := 0; i < inputSize; i++ {
 		current, err := strconv.Atoi(string(input[i]))
 		if err != nil {
 			return 0, errors.Wrap(errParse, err.Error())

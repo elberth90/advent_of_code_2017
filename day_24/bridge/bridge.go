@@ -38,7 +38,7 @@ func buildForStrength(elements []element, port int, sum int, maxSum *int) {
 		if e.used {
 			continue
 		}
-		var cp []element = make([]element, len(elements))
+		var cp = make([]element, len(elements))
 		copy(cp, elements)
 		cp[i].used = true
 		if port == e.p1 {
@@ -60,7 +60,7 @@ func buildForLength(elements []element, port int, sum int, maxSum *int, length i
 		if e.used {
 			continue
 		}
-		var cp []element = make([]element, len(elements))
+		var cp = make([]element, len(elements))
 		copy(cp, elements)
 		cp[i].used = true
 		if port == e.p1 {
@@ -73,7 +73,7 @@ func buildForLength(elements []element, port int, sum int, maxSum *int, length i
 
 func parseInput(input string) []element {
 	data := strings.Split(strings.Trim(input, "\n"), "\n")
-	var elementList []element = make([]element, len(data))
+	var elementList = make([]element, len(data))
 	for i, row := range data {
 		e := strings.Split(row, "/")
 		p1, err := strconv.Atoi(e[0])

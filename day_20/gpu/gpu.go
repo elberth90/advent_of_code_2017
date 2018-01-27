@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// ClosestParticle return id of the particle that is closest to the center
 func ClosestParticle(input string) int {
 	particleList := loadParticles(input)
 	distance := map[int]int{}
@@ -32,6 +33,7 @@ func ClosestParticle(input string) int {
 	return last
 }
 
+// AfterCollisions return amount of particles after collisions
 func AfterCollisions(input string) int {
 	particleList := loadParticles(input)
 	counter := 0
@@ -113,7 +115,7 @@ func p(list []*particle) {
 
 func loadParticles(input string) []*particle {
 	rawParticleList := strings.Split(strings.Trim(input, "\n"), "\n")
-	var particleList []*particle = make([]*particle, len(rawParticleList))
+	var particleList = make([]*particle, len(rawParticleList))
 
 	for i, p := range rawParticleList {
 		p = strings.TrimSpace(p)

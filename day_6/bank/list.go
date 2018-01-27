@@ -13,20 +13,12 @@ type Element struct {
 
 // Next returns next Element
 func (e *Element) Next() *Element {
-	if n := e.next; n != nil {
-		return n
-	}
-
-	return nil
+	return e.next
 }
 
 // Prev returns previous Element
 func (e *Element) Prev() *Element {
-	if n := e.prev; n != nil {
-		return n
-	}
-
-	return nil
+	return e.prev
 }
 
 // List holds information about length of the list and pointers to head and tail Elements
@@ -80,7 +72,7 @@ func (l *List) PushFront(value int) *List {
 		l.head = &e
 		l.tail.next = &e
 	}
-	l.len += 1
+	l.len++
 	return l
 }
 

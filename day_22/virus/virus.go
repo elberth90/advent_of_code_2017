@@ -24,11 +24,11 @@ type node struct {
 
 // CalculateInfections return number of infections
 func CalculateInfections(initialGrid string, bursts int) int {
-	infectedList := loadInitialyInfected(initialGrid)
-	var face int = up
-	var posX int = 0
-	var posY int = 0
-	var infectedCounter int = 0
+	infectedList := loadInitiallyInfected(initialGrid)
+	var face = up
+	var posX = 0
+	var posY = 0
+	var infectedCounter = 0
 	for i := 0; i < bursts; i++ {
 		if index, isInfected := getIndexIfOnList(posX, posY, infectedList); isInfected {
 			infectedList = append(infectedList[:index], infectedList[index+1:]...)
@@ -56,11 +56,11 @@ func CalculateInfections(initialGrid string, bursts int) int {
 // CalculateInfectionsWithSpeedUp return number of infections after change of the logic
 func CalculateInfectionsWithSpeedUp(initialGrid string, bursts int) int {
 	nodeList := load(initialGrid)
-	var infectedCounter int = 0
+	var infectedCounter = 0
 	var status string
-	var face int = up
-	var posX int = 0
-	var posY int = 0
+	var face = up
+	var posX = 0
+	var posY = 0
 	for i := 0; i < bursts; i++ {
 		if _, ok := nodeList[posX]; !ok {
 			nodeList[posX] = map[int]*node{}
@@ -108,8 +108,8 @@ func CalculateInfectionsWithSpeedUp(initialGrid string, bursts int) int {
 }
 
 func getIndexIfOnList(posX int, posY int, infectedNodes []node) (int, bool) {
-	var isInfected bool = false
-	var index int = 0
+	var isInfected = false
+	var index = 0
 	for index, n := range infectedNodes {
 		if n.posX != posX {
 			continue
@@ -124,18 +124,18 @@ func getIndexIfOnList(posX int, posY int, infectedNodes []node) (int, bool) {
 	return index, isInfected
 }
 
-func loadInitialyInfected(initialGrid string) []node {
+func loadInitiallyInfected(initialGrid string) []node {
 	var infectedList []node
-	var columns int = len(strings.Split(initialGrid, "\n")[0])
+	var columns = len(strings.Split(initialGrid, "\n")[0])
 	elements := strings.Replace(
 		strings.Trim(initialGrid, "\n"),
 		"\n",
 		"",
 		-1,
 	)
-	var rows int = len(elements) / columns
-	var startX int = 0 - columns/2
-	var startY int = 0 + rows/2
+	var rows = len(elements) / columns
+	var startX = 0 - columns/2
+	var startY = 0 + rows/2
 	for _, element := range elements {
 		if startX == columns/2+1 {
 			startX = 0 - columns/2
@@ -152,16 +152,16 @@ func loadInitialyInfected(initialGrid string) []node {
 
 func load(initialGrid string) map[int]map[int]*node {
 	list := map[int]map[int]*node{}
-	var columns int = len(strings.Split(initialGrid, "\n")[0])
+	var columns = len(strings.Split(initialGrid, "\n")[0])
 	elements := strings.Replace(
 		strings.Trim(initialGrid, "\n"),
 		"\n",
 		"",
 		-1,
 	)
-	var rows int = len(elements) / columns
-	var startX int = 0 - columns/2
-	var startY int = 0 + rows/2
+	var rows = len(elements) / columns
+	var startX = 0 - columns/2
+	var startY = 0 + rows/2
 	for _, element := range elements {
 		if startX == columns/2+1 {
 			startX = 0 - columns/2

@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	"github.com/elberth90/advent_of_code_2017/day_25/parser"
-	"github.com/elberth90/advent_of_code_2017/day_25/state_machine"
+	"github.com/elberth90/advent_of_code_2017/day_25/stateMachine"
 )
 
 const filename = "data.txt"
@@ -19,7 +19,7 @@ func main() {
 	}
 
 	blueprint := parser.ParseBlueprint(string(byteData))
-	result := state_machine.Diagnostic(blueprint)
+	result := stateMachine.Diagnostic(blueprint)
 	fmt.Printf("Result part1: `%d`\n", result)
 
 }

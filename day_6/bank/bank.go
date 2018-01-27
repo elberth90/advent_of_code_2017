@@ -1,5 +1,6 @@
 package bank
 
+// FindNoOfRedistributionCycles return number of redistribution cycles
 func FindNoOfRedistributionCycles(banks *List) int {
 	hashList := []string{banks.Hash()}
 	for {
@@ -9,7 +10,7 @@ func FindNoOfRedistributionCycles(banks *List) int {
 
 		for i := 0; i < value; i++ {
 			currentElement = currentElement.Prev()
-			currentElement.Value += 1
+			currentElement.Value++
 		}
 
 		hash := banks.Hash()
@@ -22,6 +23,7 @@ func FindNoOfRedistributionCycles(banks *List) int {
 	}
 }
 
+// FindExtendedNoOfRedistributionCycles return number of cycles between second and first occurrence of hash
 func FindExtendedNoOfRedistributionCycles(banks *List) int {
 	hashList := []string{banks.Hash()}
 	l := 0
@@ -33,7 +35,7 @@ func FindExtendedNoOfRedistributionCycles(banks *List) int {
 
 		for i := 0; i < value; i++ {
 			currentElement = currentElement.Prev()
-			currentElement.Value += 1
+			currentElement.Value++
 		}
 
 		hash := banks.Hash()

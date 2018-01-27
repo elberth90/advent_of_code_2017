@@ -14,7 +14,7 @@ func CaughtHowManyTimes(input string) int {
 
 func calculateSeverity(data []string) int {
 
-	var fList map[int]int = map[int]int{}
+	var fList = map[int]int{}
 
 	for _, line := range data {
 		l := strings.Split(line, ": ")
@@ -41,7 +41,7 @@ func calculateSeverity(data []string) int {
 
 func calculateDelay(data []string) int {
 
-	var fList map[int]int = map[int]int{}
+	var fList = map[int]int{}
 
 	for _, line := range data {
 		l := strings.Split(line, ": ")

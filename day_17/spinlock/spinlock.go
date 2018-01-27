@@ -5,7 +5,7 @@ const largeLimit = 50000000
 
 // PredictLast return number that appears after 2017 value
 func PredictLast(steps int) int {
-	var buffer []int = make([]int, limit+1)
+	var buffer = make([]int, limit+1)
 	buffer[0] = 0
 	var currentPos int
 
