@@ -1,0 +1,6 @@
+goos: darwin
+goarch: amd64
+pkg: github.com/elberth90/advent_of_code_2017/day_13/firewall
+BenchmarkDonNotGetCaught-4   	  500000	      2451 ns/op	     448 B/op	       9 allocs/op
+PASS
+ok  	github.com/elberth90/advent_of_code_2017/day_13/firewall	1.273s
