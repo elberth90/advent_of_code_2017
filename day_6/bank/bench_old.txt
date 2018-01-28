@@ -1,0 +1,6 @@
+goos: darwin
+goarch: amd64
+pkg: github.com/elberth90/advent_of_code_2017/day_6/bank
+BenchmarkFindNoOfRedistributionCycles-4   	  300000	      4555 ns/op	     848 B/op	      55 allocs/op
+PASS
+ok  	github.com/elberth90/advent_of_code_2017/day_6/bank	1.423s

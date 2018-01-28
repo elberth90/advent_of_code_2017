@@ -16,22 +16,18 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	inputList := strings.Fields(string(byteData))
-	l1 := bank.New()
-	l2 := bank.New()
-	for _, s := range inputList {
-		i, err := strconv.Atoi(s)
+	bankValues := make([]int, len(inputList))
+	for i, value := range inputList {
+		bankValues[i], err = strconv.Atoi(value)
 		if err != nil {
 			panic(err)
 		}
-		l1.PushFront(i)
-		l2.PushFront(i)
 	}
 
-	result := bank.FindNoOfRedistributionCycles(l1)
+	result := bank.FindNoOfRedistributionCycles(bankValues)
 	fmt.Printf("Result : `%d`\n", result)
 
-	result = bank.FindExtendedNoOfRedistributionCycles(l2)
+	result = bank.FindExtendedNoOfRedistributionCycles(bankValues)
 	fmt.Printf("Result : `%d`\n", result)
 }

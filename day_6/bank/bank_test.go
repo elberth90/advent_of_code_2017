@@ -5,21 +5,19 @@ import (
 )
 
 func TestFindNoOfRedistributionCycles(t *testing.T) {
-
-	b := NewPredefined(0, 2, 7, 0)
 	useCases := map[string]struct {
-		bank           *List
+		bank           []int
 		expectedResult int
 	}{
 		"5 as a result": {
-			bank:           b,
+			bank:           []int{0, 2, 7, 0},
 			expectedResult: 5,
 		},
 	}
 
 	for ucName, uc := range useCases {
 		t.Run(ucName, func(t *testing.T) {
-			result := FindNoOfRedistributionCycles(b)
+			result := FindNoOfRedistributionCycles(uc.bank)
 			if result != uc.expectedResult {
 				t.Fatalf("Expected result was `%d`, got `%d`", uc.expectedResult, result)
 			}
@@ -27,22 +25,27 @@ func TestFindNoOfRedistributionCycles(t *testing.T) {
 	}
 }
 
+func BenchmarkFindNoOfRedistributionCycles(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		FindNoOfRedistributionCycles([]int{0, 2, 7, 0})
+	}
+}
+
 func TestFindExtendedNoOfRedistributionCycles(t *testing.T) {
 
-	b := NewPredefined(0, 2, 7, 0)
 	useCases := map[string]struct {
-		bank           *List
+		bank           []int
 		expectedResult int
 	}{
 		"4 as a result": {
-			bank:           b,
+			bank:           []int{0, 2, 7, 0},
 			expectedResult: 4,
 		},
 	}
 
 	for ucName, uc := range useCases {
 		t.Run(ucName, func(t *testing.T) {
-			result := FindExtendedNoOfRedistributionCycles(b)
+			result := FindExtendedNoOfRedistributionCycles(uc.bank)
 			if result != uc.expectedResult {
 				t.Fatalf("Expected result was `%d`, got `%d`", uc.expectedResult, result)
 			}
