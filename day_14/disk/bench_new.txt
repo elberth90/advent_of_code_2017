@@ -1,0 +1,6 @@
+goos: darwin
+goarch: amd64
+pkg: github.com/elberth90/advent_of_code_2017/day_14/disk
+BenchmarkOccupancy-4   	      30	  52942664 ns/op	  636822 B/op	   32896 allocs/op
+PASS
+ok  	github.com/elberth90/advent_of_code_2017/day_14/disk	1.659s

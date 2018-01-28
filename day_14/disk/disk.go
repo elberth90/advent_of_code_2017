@@ -14,7 +14,7 @@ func Occupancy(input string) int {
 
 	for i := 0; i < gridLength; i++ {
 		hash := fmt.Sprintf("%s-%d", input, i)
-		knotHash := Part2(256, []byte(hash))
+		knotHash := GenerateKnotHash([]byte(hash))
 		occupancy += strings.Count(convertToBits(knotHash), "1")
 	}
 
@@ -29,7 +29,7 @@ func RegionsFinder(input string) int {
 
 	for i := 0; i < gridLength; i++ {
 		hash := fmt.Sprintf("%s-%d", input, i)
-		knotHash := Part2(256, []byte(hash))
+		knotHash := GenerateKnotHash([]byte(hash))
 		disk[i] = convertToBits(knotHash)
 	}
 
@@ -64,7 +64,7 @@ func convertToBits(knotHash string) string {
 		if err != nil {
 			panic(err)
 		}
-		bits = fmt.Sprintf("%s%s", bits, b)
+		bits += b
 	}
 	return bits
 }
