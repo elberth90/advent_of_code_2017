@@ -7,18 +7,22 @@ import (
 func TestFindExit(t *testing.T) {
 
 	useCases := map[string]struct {
-		input          *List
+		input          string
 		expectedResult int
 	}{
 		"exit in 5 steps": {
-			input:          NewPredefined(0, 3, 0, 1, -3),
+			input:          "0\n3\n0\n1\n-3\n",
 			expectedResult: 5,
 		},
 	}
 
 	for ucName, uc := range useCases {
 		t.Run(ucName, func(t *testing.T) {
-			result := FindExit(uc.input)
+			result, err := FindExit(uc.input)
+			if err != nil {
+				t.Fatalf("Unexpected error: `%#v`", err)
+			}
+
 			if result != uc.expectedResult {
 				t.Fatalf("Expected result was `%d`, got `%d`", uc.expectedResult, result)
 			}
@@ -29,21 +33,31 @@ func TestFindExit(t *testing.T) {
 func TestFindStrangeExit(t *testing.T) {
 
 	useCases := map[string]struct {
-		input          *List
+		input          string
 		expectedResult int
 	}{
 		"exit in 10 steps": {
-			input:          NewPredefined(0, 3, 0, 1, -3),
+			input:          "0\n3\n0\n1\n-3\n",
 			expectedResult: 10,
 		},
 	}
 
 	for ucName, uc := range useCases {
 		t.Run(ucName, func(t *testing.T) {
-			result := FindStrangeExit(uc.input)
+			result, err := FindStrangeExit(uc.input)
+			if err != nil {
+				t.Fatalf("Unexpected error: `%#v`", err)
+			}
+
 			if result != uc.expectedResult {
 				t.Fatalf("Expected result was `%d`, got `%d`", uc.expectedResult, result)
 			}
 		})
+	}
+}
+
+func BenchmarkFindStrangeExit(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		FindStrangeExit("0\n3\n0\n1\n-3\n")
 	}
 }

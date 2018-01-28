@@ -1,11 +1,8 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-
-	"strconv"
+	"io/ioutil"
 
 	"github.com/elberth90/advent_of_code_2017/day_5/maze"
 )
@@ -13,31 +10,21 @@ import (
 const filename = "data.txt"
 
 func main() {
-	file, err := os.Open(filename)
+	byteData, err := ioutil.ReadFile(filename)
 	if err != nil {
 		panic(err)
 	}
-	defer file.Close()
+	data := string(byteData)
 
-	scanner := bufio.NewScanner(file)
-	l1 := maze.New()
-	l2 := maze.New()
-	for scanner.Scan() {
-		t := scanner.Text()
-		val, err := strconv.Atoi(t)
-		if err != nil {
-			panic(err)
-		}
-		l1.Push(val)
-		l2.Push(val)
-	}
-
-	if err := scanner.Err(); err != nil {
+	result, err := maze.FindExit(data)
+	if err != nil {
 		panic(err)
 	}
-
-	result := maze.FindExit(l1)
 	fmt.Printf("Result: %d\n", result)
-	result = maze.FindStrangeExit(l2)
+
+	result, err = maze.FindStrangeExit(data)
+	if err != nil {
+		panic(err)
+	}
 	fmt.Printf("Result: %d\n", result)
 }

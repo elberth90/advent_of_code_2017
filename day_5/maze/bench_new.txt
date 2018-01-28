@@ -1,0 +1,6 @@
+goos: darwin
+goarch: amd64
+pkg: github.com/elberth90/advent_of_code_2017/day_5/maze
+BenchmarkFindStrangeExit-4   	 3000000	       441 ns/op	     160 B/op	       3 allocs/op
+PASS
+ok  	github.com/elberth90/advent_of_code_2017/day_5/maze	1.791s
