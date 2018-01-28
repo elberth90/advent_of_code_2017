@@ -5,24 +5,18 @@ import (
 	"strconv"
 )
 
-// Part1 return result of multiplication of the first numbers from generate hash
-func Part1(listLength int, inputLengths []int) int {
-	list := generateList(listLength)
-	h := generateHash(list, inputLengths, 1)
+const listLength = 256
 
-	return h[0] * h[1]
-}
-
-// Part2 generates a Knot Hash
-func Part2(listLength int, input []byte) string {
+// GenerateKnotHash generates a Knot Hash
+func GenerateKnotHash(input []byte) string {
 	inputByte := append(input, []byte{17, 31, 73, 47, 23}...)
 	inputLengths := convertToASCIICodes(inputByte)
-	sparseHash := generateHash(generateList(listLength), inputLengths, 64)
+	sparseHash := generateHash(generateList(), inputLengths, 64)
 	denseHash := getDenseHash(sparseHash)
 	return convertToHex(denseHash)
 }
 
-func generateHash(list []int, inputLengths []int, repeat int) []int {
+func generateHash(list [listLength]int, inputLengths []int, repeat int) [listLength]int {
 	index, skipSize := 0, 0
 	start, end := 0, 0
 	for i := 0; i < repeat; i++ {
@@ -37,17 +31,14 @@ func generateHash(list []int, inputLengths []int, repeat int) []int {
 	return list
 }
 
-func reverse(list []int, start int, end int, length int) []int {
-	copyList := make([]int, len(list))
-	copy(copyList, list)
-
-	for i := 0; i < length; i++ {
+func reverse(list [listLength]int, start int, end int, length int) [listLength]int {
+	for i := 0; i < length/2; i++ {
 		start = start % len(list)
 		end = end % len(list)
 		if end < 0 {
 			end = (end + len(list)) % len(list)
 		}
-		list[start] = copyList[end]
+		list[start], list[end] = list[end], list[start]
 		start++
 		end--
 	}
@@ -55,9 +46,9 @@ func reverse(list []int, start int, end int, length int) []int {
 	return list
 }
 
-func generateList(size int) []int {
-	list := make([]int, size)
-	for i := 0; i < size; i++ {
+func generateList() [listLength]int {
+	var list [listLength]int
+	for i := 0; i < listLength; i++ {
 		list[i] = i
 	}
 
@@ -73,7 +64,7 @@ func convertToASCIICodes(list []byte) []int {
 	return asciiList
 }
 
-func getDenseHash(sparseHash []int) []int {
+func getDenseHash(sparseHash [listLength]int) []int {
 	blockSize := 16
 	denseHash := make([]int, blockSize)
 	for i := 0; i < blockSize; i++ {
