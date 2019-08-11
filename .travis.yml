@@ -1,19 +1,13 @@
 language: go
 
 go:
-  - 1.9.x
+  - 1.12.x
 
 sudo: false
 before_script:
-  - GO_FILES=$(find . -iname '*.go' -type f | grep -v /vendor/)
-  - go get -u github.com/kardianos/govendor
-  - go get github.com/golang/lint/golint
-  - go get honnef.co/go/tools/cmd/megacheck
-  - go get github.com/fzipp/gocyclo
+  - go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
 
 script:
-  - govendor test +l
-  - govendor test +l -race ./...
-  - go vet ./...
-  - gocyclo -over 19 $GO_FILES
-  - golint ./...
+  - go test ./...
+  - go test -race ./...
+  - golangci-lint run -E gocyclo -E errcheck -E prealloc -E gosec -E golint ./...

@@ -31,7 +31,6 @@ func move(line []string, instructions string) []string {
 				panic(err)
 			}
 			line = spin(line, j)
-			break
 		case "x":
 			j := strings.Split(string([]rune(i)[1:]), "/")
 			first, err := strconv.Atoi(j[0])
@@ -43,11 +42,9 @@ func move(line []string, instructions string) []string {
 				panic(err)
 			}
 			line = exchange(line, first, second)
-			break
 		case "p":
 			j := strings.Split(string([]rune(i)[1:]), "/")
 			line = partner(line, j[0], j[1])
-			break
 		default:
 			panic(string([]rune(i)[0]))
 		}

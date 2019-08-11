@@ -1,4 +1,4 @@
-package stateMachine
+package machine
 
 import (
 	"github.com/elberth90/advent_of_code_2017/day_25/parser"
@@ -6,7 +6,7 @@ import (
 
 // Diagnostic return diagnostic checksum
 func Diagnostic(blueprint parser.Blueprint) int {
-	var tape = make([]int, blueprint.Steps*2, blueprint.Steps*2)
+	var tape = make([]int, blueprint.Steps*2, 2*blueprint.Steps)
 
 	pointer := blueprint.Steps
 	var ins parser.Instruction

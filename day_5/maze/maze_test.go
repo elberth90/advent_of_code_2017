@@ -58,6 +58,9 @@ func TestFindStrangeExit(t *testing.T) {
 
 func BenchmarkFindStrangeExit(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		FindStrangeExit("0\n3\n0\n1\n-3\n")
+		_, err := FindStrangeExit("0\n3\n0\n1\n-3\n")
+		if err != nil {
+			b.Error(err)
+		}
 	}
 }

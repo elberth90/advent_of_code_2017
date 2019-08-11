@@ -81,7 +81,7 @@ func parseInt(char string) (int, error) {
 }
 
 func convert(numbers []string) ([]int, error) {
-	var result []int
+	result := make([]int, 0)
 	for _, number := range numbers {
 		n, err := parseInt(number)
 		if err != nil {

@@ -40,13 +40,11 @@ func runGenerator(startingValue int64, factor int64, criteria criteriaFunc) chan
 		defer close(c)
 		last := startingValue
 		for {
-			select {
-			case c <- last:
-				for true {
-					last = (last * factor) % divider
-					if criteria(last) {
-						break
-					}
+			c <- last
+			for {
+				last = (last * factor) % divider
+				if criteria(last) {
+					break
 				}
 			}
 		}

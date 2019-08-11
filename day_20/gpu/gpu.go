@@ -1,7 +1,6 @@
 package gpu
 
 import (
-	"fmt"
 	"math"
 	"reflect"
 	"strings"
@@ -104,13 +103,6 @@ func getClosestParticleID(distance map[int]int) int {
 	}
 
 	return lowestID
-}
-
-func p(list []*particle) {
-	for _, p := range list {
-		fmt.Printf("%#v \n", p)
-	}
-	fmt.Println()
 }
 
 func loadParticles(input string) []*particle {
